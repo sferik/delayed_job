@@ -15,17 +15,18 @@ platforms :ruby do
 end
 
 platforms :jruby do
-  if ENV['RAILS_VERSION'] == '4.2.0'
+  case ENV.fetch('RAILS_VERSION', nil)
+  when '4.2.0'
     gem 'activerecord-jdbcsqlite3-adapter', '< 50.0'
-  elsif ENV['RAILS_VERSION'] == '5.0.0'
+  when '5.0.0'
     gem 'activerecord-jdbcsqlite3-adapter', '~> 50.0'
-  elsif ENV['RAILS_VERSION'] == '5.1.0'
+  when '5.1.0'
     gem 'activerecord-jdbcsqlite3-adapter', '~> 51.0'
-  elsif ENV['RAILS_VERSION'] == '5.2.0'
+  when '5.2.0'
     gem 'activerecord-jdbcsqlite3-adapter', '~> 52.0'
-  elsif ENV['RAILS_VERSION'] == '6.0.0'
+  when '6.0.0'
     gem 'activerecord-jdbcsqlite3-adapter', '~> 60.0'
-  elsif ENV['RAILS_VERSION'] == '6.1.0'
+  when '6.1.0'
     gem 'activerecord-jdbcsqlite3-adapter', '~> 61.0'
   else
     gem 'activerecord-jdbcsqlite3-adapter'
@@ -83,14 +84,13 @@ group :test do
   elsif Gem::Version.new(RUBY_VERSION) <= Gem::Version.new('2.2.100')
     gem 'logger', '< 1.3'
   end
-  if ENV['RAILS_VERSION'].nil? || ENV['RAILS_VERSION'] >= '6.0.0'
-    gem 'zeitwerk', :require => false
-  end
   gem 'concurrent-ruby'
+  gem 'zeitwerk', :require => false if ENV['RAILS_VERSION'].nil? || ENV['RAILS_VERSION'] >= '6.0.0'
 end
 
 group :rubocop do
-  gem 'rubocop', '>= 0.25', '< 0.49'
+  # RuboCop 1.x needs Ruby 2.7 to run; the RuboCop workflow uses Ruby 3.4
+  gem 'rubocop', '~> 1.88' if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new('2.7.0')
 end
 
 gemspec
