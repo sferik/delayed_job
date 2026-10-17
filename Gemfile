@@ -24,9 +24,9 @@ platforms :jruby do
   elsif ENV['RAILS_VERSION'] == '5.2.0'
     gem 'activerecord-jdbcsqlite3-adapter', '~> 52.0'
   elsif ENV['RAILS_VERSION'] == '6.0.0'
-    gem 'activerecord-jdbcsqlite3-adapter', '~> 60.0'
+    gem 'activerecord-jdbcsqlite3-adapter', '~> 60'
   elsif ENV['RAILS_VERSION'] == '6.1.0'
-    gem 'activerecord-jdbcsqlite3-adapter', '~> 61.0'
+    gem 'activerecord-jdbcsqlite3-adapter', '~> 61'
   else
     gem 'activerecord-jdbcsqlite3-adapter'
   end
@@ -42,7 +42,7 @@ platforms :jruby do
   elsif ENV['RAILS_VERSION']
     gem 'railties', "~> #{ENV['RAILS_VERSION']}"
   else
-    gem 'railties', ['>= 3.0', '< 9.0']
+    gem 'railties', ['>= 6', '< 9']
   end
 end
 
@@ -65,8 +65,8 @@ group :test do
       gem 'rails-html-sanitizer', '< 1.4.0'
     end
   else
-    gem 'actionmailer', ['>= 3.0', '< 9.0']
-    gem 'activerecord', ['>= 3.0', '< 9.0']
+    gem 'actionmailer', ['>= 6', '< 9']
+    gem 'activerecord', ['>= 6', '< 9']
   end
   gem 'net-smtp'
   gem 'rspec', '>= 3'
@@ -80,9 +80,7 @@ group :test do
     gem 'mutex_m'
     gem 'ostruct'
   end
-  if ENV['RAILS_VERSION'].nil? || ENV['RAILS_VERSION'] >= '6.0.0'
-    gem 'zeitwerk', :require => false
-  end
+  gem 'zeitwerk', :require => false
   gem 'concurrent-ruby'
 end
 

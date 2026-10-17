@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |spec|
-  spec.add_dependency 'activesupport', ['>= 3.0', '< 9.0']
+  spec.add_dependency 'activesupport', ['>= 6', '< 9']
   spec.add_dependency 'benchmark'
   spec.add_dependency 'logger'
   spec.authors        = ['Brandon Keepers', 'Brian Ryckbost', 'Chris Gaffney', 'David Genord II', 'Erik Michaels-Ober', 'Matt Griffin', 'Steve Richert', 'Tobias Lütke']
